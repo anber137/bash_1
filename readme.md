@@ -45,17 +45,18 @@ echo '' > /proc/$(pgrep yes)/fd/1
 sudo opensnoop-bpfcc -T -d 1 > d1
 ```
 
->Cодержимое d1:
->TIME(s)       PID    COMM               FD ERR PATH
->0.000000000   581    irqbalance          6   0 /proc/interrupts
->0.000366000   581    irqbalance          6   0 /proc/stat
->0.000547000   581    irqbalance          6   0 /proc/irq/20/smp_affinity
->0.000642000   581    irqbalance          6   0 /proc/irq/0/smp_affinity
->0.000733000   581    irqbalance          6   0 /proc/irq/1/smp_affinity
->0.000841000   581    irqbalance          6   0 /proc/irq/8/smp_affinity
->0.000935000   581    irqbalance          6   0 /proc/irq/12/smp_affinity
->0.001034000   581    irqbalance          6   0 /proc/irq/14/smp_affinity
->0.001125000   581    irqbalance          6   0 /proc/irq/15/smp_affinity
+Cодержимое d1:
+
+TIME(s)       PID    COMM               FD ERR PATH
+0.000000000   581    irqbalance          6   0 /proc/interrupts
+0.000366000   581    irqbalance          6   0 /proc/stat
+0.000547000   581    irqbalance          6   0 /proc/irq/20/smp_affinity
+0.000642000   581    irqbalance          6   0 /proc/irq/0/smp_affinity
+0.000733000   581    irqbalance          6   0 /proc/irq/1/smp_affinity
+0.000841000   581    irqbalance          6   0 /proc/irq/8/smp_affinity
+0.000935000   581    irqbalance          6   0 /proc/irq/12/smp_affinity
+0.001034000   581    irqbalance          6   0 /proc/irq/14/smp_affinity
+0.001125000   581    irqbalance          6   0 /proc/irq/15/smp_affinity
 
 Или 
 
@@ -63,16 +64,16 @@ sudo opensnoop-bpfcc -T -d 1 > d1
 awk '{print $6}' d1
 ```
 
->PATH
->/proc/interrupts
->/proc/stat
->/proc/irq/20/smp_affinity
->/proc/irq/0/smp_affinity
->/proc/irq/1/smp_affinity
->/proc/irq/8/smp_affinity
->/proc/irq/12/smp_affinity
->/proc/irq/14/smp_affinity
->/proc/irq/15/smp_affinity
+<PATH
+/proc/interrupts
+/proc/stat
+/proc/irq/20/smp_affinity
+/proc/irq/0/smp_affinity
+/proc/irq/1/smp_affinity
+/proc/irq/8/smp_affinity
+/proc/irq/12/smp_affinity
+/proc/irq/14/smp_affinity
+/proc/irq/15/smp_affinity>
 
 ## 6.Какой системный вызов использует uname -a? Приведите цитату из man по этому системному вызову, где описывается альтернативное местоположение в /proc, где можно узнать версию ядра и релиз ОС.
 
@@ -148,7 +149,7 @@ set -x; echo ''
 ```
 
 Результат:
->+ echo ''
+>\+ echo ''
 
 set -o pipefail прекращает выполнение, если одна из частей пайпа завершилась ошибкой.
 
