@@ -64,16 +64,16 @@ TIME(s)       PID    COMM               FD ERR PATH
 awk '{print $6}' d1
 ```
 
-<PATH
-/proc/interrupts
-/proc/stat
-/proc/irq/20/smp_affinity
-/proc/irq/0/smp_affinity
-/proc/irq/1/smp_affinity
-/proc/irq/8/smp_affinity
-/proc/irq/12/smp_affinity
-/proc/irq/14/smp_affinity
-/proc/irq/15/smp_affinity>
+	PATH
+	/proc/interrupts
+	/proc/stat
+	/proc/irq/20/smp_affinity
+	/proc/irq/0/smp_affinity
+	/proc/irq/1/smp_affinity
+	/proc/irq/8/smp_affinity
+	/proc/irq/12/smp_affinity
+	/proc/irq/14/smp_affinity
+	/proc/irq/15/smp_affinity
 
 ## 6.Какой системный вызов использует uname -a? Приведите цитату из man по этому системному вызову, где описывается альтернативное местоположение в /proc, где можно узнать версию ядра и релиз ОС.
 
