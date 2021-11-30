@@ -1,10 +1,13 @@
 # Домашнее задание к занятию "3.4. Операционные системы, лекция 2"
 
-## 1.Создание самостоятельно простой unit-файл для node_exporter
+## 1. Создание самостоятельно простой unit-файл для node_exporter
 
 ### Решение  
 	
-	Создал unit - файл:
+Создал unit файл:
+
+	systemd cat node_exporter
+
 	/etc/systemd/system/node_exporter.service
 
 	[Unit]
@@ -19,7 +22,9 @@
 	[Install]
 	WantedBy=multi-user.target
 
-Добавляем в автозагрузку sudo systemctl enable node_exporter.service
+Добавил в автозагрузку sudo systemctl enable node_exporter.service
+
+Провер состояние:
 
 	vagrant@v:~$ systemctl status node_exporter
 	● node_exporter.service - Prometheus Node Exporter
@@ -33,12 +38,16 @@
 
 После рестарта процесс корректно стартует. Параметры передаются через переменную $EXTRA_OPT, значение которой задается в файле окружения.
 
-## 2.Ознакомьтесь с опциями node_exporter и выводом /metrics по-умолчанию. Приведите несколько опций, которые вы бы выбрали для базового мониторинга хоста по CPU, памяти диску и сети.
+## 2. Ознакомьтесь с опциями node_exporter и выводом /metrics по-умолчанию. Приведите несколько опций, которые вы бы выбрали для базового мониторинга хоста по CPU, памяти диску и сети.
 
 ### Решение
 
 Для CPU (в каком состоянии сколько находиться в секундах):
-	vagrant@v:~/node_exporter-1.3.0.linux-amd64$ curl -s localhost:9100/metrics | grep  node_cpu_seconds_total
+
+``` bash
+curl -s localhost:9100/metrics | grep  node_cpu_seconds_total
+```
+
 	# HELP node_cpu_seconds_total Seconds the CPUs spent in each mode.
 	# TYPE node_cpu_seconds_total counter
 	node_cpu_seconds_total{cpu="0",mode="idle"} 2956
@@ -60,32 +69,49 @@
 
 
 Для памяти (свободная память в байтах):
-	vagrant@v:~/node_exporter-1.3.0.linux-amd64$ curl -s localhost:9100/metrics | grep node_memory_MemFree_bytes
+
+``` bash
+curl -s localhost:9100/metrics | grep node_memory_MemFree_bytes
+```
 	# HELP node_memory_MemFree_bytes Memory information field MemFree_bytes.
 	# TYPE node_memory_MemFree_bytes gauge
 	node_memory_MemFree_bytes 3.46857472e+08
 
 Также удобно было бы использовать:    	
+
 	node_memory_MemTotal_bytes
     	node_memory_Cached_bytes
     	node_memory_Buffers_bytes
 
 
 Для сети можно использовать переданное и полученое количество байт:
-	vagrant@v:~/node_exporter-1.3.0.linux-amd64$ curl -s localhost:9100/metrics | grep 'node_network_receive_bytes_total{device="eth0"}'node_network_receive_bytes_total{device="eth0"} 2.009426e+06
 
-	vagrant@v:~/node_exporter-1.3.0.linux-amd64$ curl -s localhost:9100/metrics | grep 'node_network_transmit_bytes_total{device="eth0"}'
-node_network_transmit_bytes_total{device="eth0"} 4.380297e+06
+``` bash
+curl -s localhost:9100/metrics | grep 'node_network_receive_bytes_total{device="eth0"}'
+```
+	node_network_receive_bytes_total{device="eth0"} 2.009426e+06
+
+
+``` bash
+curl -s localhost:9100/metrics | grep 'node_network_transmit_bytes_total{device="eth0"}'
+```
+
+	node_network_transmit_bytes_total{device="eth0"} 4.380297e+06
 
 
 Для дисковой подсистемы прочитанный и записанный объем в байтах:
-	$ curl -s localhost:9100/metrics | grep node_disk_'read_bytes_total{device="sda"\|written_bytes_total{device="sda"}'
+
+``` bash
+	curl -s localhost:9100/metrics | grep node_disk_'read_bytes_total{device="sda"\|written_bytes_total{device="sda"}'
+```
+
 
 ## 3. Установите в свою виртуальную машину Netdata. Воспользуйтесь готовыми пакетами для установки (sudo apt install -y netdata). После успешной установки:
 
 ## Решение
 
 Виртуальная машина Netdata установлена порт проброшен:
+	
 	vagrant@v:~$ ps -aux | grep netdata
 	netdata      609  1.4  7.5 285372 76116 ?        Ssl  Nov29  15:21 /usr/sbin/netdata -D
 	
@@ -99,25 +125,25 @@ node_network_transmit_bytes_total{device="eth0"} 4.380297e+06
 На хосте где запущен virtualbox порт 19999 по адресу localhost доступен:
 
         anber@debian:/home/var2$ ss -tulpn '( sport 19999 )'
-        Netid           State            Recv-Q            Send-Q                       Local Address:Port                        Peer Address:Port           Process           tcp             LISTEN           0                 10                                 0.0.0.0:19999                            0.0.0.0:* 
-        
+	Local Address:Port 0.0.0.0:19999
+ 
 	anber@debian:/home/var2$ telnet localhost 19999
 	Trying ::1...
 	Trying 127.0.0.1...
 	Connected to localhost.
 	Escape character is '^]'.
 
-В браузере lynx 127.0.0.1:19999 также почти все отображается:
+В браузере lynx 127.0.0.1:19999 также почти все отображается:                                                                         
 
-                                                                                                                                           netdata dashboard (p1 of 20)
-   You must enable JavaScript in order to use Netdata!
-   You can do this in your browser settings.
+	netdata dashboard (p1 of 20)
+	You must enable JavaScript in order to use Netdata!
+	You can do this in your browser settings.
 
-   (BUTTON) Toggle navigation
-     * [netdata-logomark.svg]
-     * my-netdata
-       Loading, please wait...
-     *  Nodes^ beta
+	(BUTTON) Toggle navigation
+    	 * [netdata-logomark.svg]
+    	 * my-netdata
+      	 Loading, please wait...
+     	*  Nodes^ beta
 
 При дальнейшем пробросе порта на компьютер где имеется обычный браузер все отобразилось. С метриками ознакомился.
 
@@ -128,6 +154,7 @@ node_network_transmit_bytes_total{device="eth0"} 4.380297e+06
 Да
 
 В выводе dmesg имеется упоминание про Hypervisor:	
+	
 	dmesg|grep Hyper
 	Hypervisor detected: KVM
 
@@ -142,6 +169,7 @@ node_network_transmit_bytes_total{device="eth0"} 4.380297e+06
 	[    0.000000] DMI: IBM System x3650 M4 : -[7915K4G]-/00J6520, BIOS -[VVE124AUS-1.30]- 11/21/2012
 
 И на виртуальной машине VMWare ESXi:
+
 	# dmesg | grep DMI
 	[    0.000000] DMI 2.6 present.
 	[    0.000000] DMI: VMware, Inc. VMware7,1/440BX Desktop Reference Platform, BIOS VMW71.00V.0.B64.1605280101 05/28/2016
@@ -154,6 +182,7 @@ node_network_transmit_bytes_total{device="eth0"} 4.380297e+06
 ### Ответ
  
 Максимальное количество файлов открытых одним процессом задается для всей системы:
+
 	vagrant@v:~$ sysctl fs.nr_open
 	fs.nr_open = 1048576
 
@@ -165,12 +194,15 @@ node_network_transmit_bytes_total{device="eth0"} 4.380297e+06
 Максимальное количество файловых дискрипторов на процесс в данном экземпляре оболочки ulimit -n. Не может привышать fs.nr_open
 
 т.е. 
+
 	ulimit -n 1048577 
+
 задать мы не можем не изменив nr_open (sudo sysctl -w fs.nr_open=1048577)
 
 Если лимит на открытие файлов превышен, то мы получаем ошибку.
 
 Пример:
+
 	vagrant@v:~$ ulimit -n 2
 
 	vagrant@v:~$ mc
@@ -184,6 +216,7 @@ node_network_transmit_bytes_total{device="eth0"} 4.380297e+06
 ### Решение:
 
 Выполним:
+
 	unshare -f --pid --mount-proc -- bash -c "echo $$ && sleep 1h" &
 
 Определим PID процесса через: lsns либо ps -aux либо pgrep sleep
@@ -213,7 +246,10 @@ cgroups – это механизм ядра, позволяющий огран�
 Посмотреть список cgroup и запущенных процессов можно:
 
 
-Выполнив systemd-cgls --no-page
+Выполнив 
+	
+	systemd-cgls --no-page
+
 Можно увидеть, что группа или slice к которой относиться наша сесия: user-1000.slice
 
 Изменить число процессов, которое можно создать в сессии можно так:
@@ -221,10 +257,12 @@ cgroups – это механизм ядра, позволяющий огран�
 	cat /sys/fs/cgroup/pids/user.slice/user-1000.slice/pids.max
 
 Или можно ограничить доступ:
+
 	echo 'c 1:3 rmw' > /sys/fs/cgroup/devices/user.slice/devices.deny
 
 	root@v:/home/vagrant# echo "null" > /dev/null
 	bash: /dev/null: Operation not permitted
 
 Восстановим доступ:
+
 	echo 'a' > /sys/fs/cgroup/devices/user.slice/devices.allow
