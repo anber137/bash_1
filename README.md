@@ -35,7 +35,7 @@
 
 Код ошибки 500.
 
-Описание из [wiki](https://ru.wikipedia.org/wiki/Список_кодов_состояния_HTTP "wiki HTTP"):
+Описание из [wiki](https://ru.wikipedia.org/wiki/%D0%A1%D0%BF%D0%B8%D1%81%D0%BE%D0%BA_%D0%BA%D0%BE%D0%B4%D0%BE%D0%B2_%D1%81%D0%BE%D1%81%D1%82%D0%BE%D1%8F%D0%BD%D0%B8%D1%8F_HTTP):
  
 	500 — любая внутренняя ошибка сервера, которая не входит в рамки остальных ошибок класса. Появился в HTTP/1.0.
 
@@ -51,12 +51,12 @@ Request Method: GET
 Status Code: 307 Internal Redirect
 Referrer Policy: strict-origin-when-cross-origin
 
-Из wiki:
+Описание из [wiki](https://ru.wikipedia.org/wiki/%D0%A1%D0%BF%D0%B8%D1%81%D0%BE%D0%BA_%D0%BA%D0%BE%D0%B4%D0%BE%D0%B2_%D1%81%D0%BE%D1%81%D1%82%D0%BE%D1%8F%D0%BD%D0%B8%D1%8F_HTTP):
 307 Temporary Redirect («временное перенаправление»)
 В данном случае возникает, так как сайт работает по протоколу HTTPS, а мы вводим HTTP. 
 На такой случай на сайте предусмотрено перенаправление с HTTP 80 на HTTPS 443.
 
-Дольше всего (986 ms), как не странно обрабатывался запрос загруки картинки png.
+Дольше всего (986 ms)  обрабатывался запрос загруки картинки png.
 
 ![Alt](2.png "Screenshot Chrome")
 
