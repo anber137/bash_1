@@ -14,7 +14,6 @@ apt-get install net-tools -y && ifconfig
 
 В современных дистрибутивах по умолчанию установлена утилита ip:
 
-<<<<<<< HEAD
 	root@zh:/home/anber# ip -br -c l
 	lo               UNKNOWN        00:00:00:00:00:00 <LOOPBACK,UP,LOWER_UP> 
 	eth0             DOWN           00:26:18:a3:26:32 <NO-CARRIER,BROADCAST,MULTICAST,UP> 
