@@ -5,39 +5,40 @@
 
 ### Решение
 
-	vagrant@vagrant:~$ telnet stackoverflow.com 80
-	Trying 151.101.65.69...
+	root@debian:~# telnet stackoverflow.com 80
+	Trying 151.101.129.69...
 	Connected to stackoverflow.com.
 	Escape character is '^]'.
 	GET /questions HTTP/1.0
-	
-	HTTP/1.1 500 Domain Not Found
-	Server: Varnish
-	Retry-After: 0
-	content-type: text/html
-	Cache-Control: private, no-cache
-	X-Served-By: cache-hhn4073-HHN
-	Content-Length: 220
+	HOST: stackoverflow.com
+
+	HTTP/1.1 301 Moved Permanently
+	cache-control: no-cache, no-store, must-revalidate
+	location: https://stackoverflow.com/questions
+	x-request-guid: 167a072e-601a-421e-8f5a-0a6fb5935902
+	feature-policy: microphone 'none'; speaker 'none'
+	content-security-policy: upgrade-insecure-requests; frame-ancestors 'self' https://stackexchange.com
 	Accept-Ranges: bytes
-	Date: Thu, 02 Dec 2021 16:45:11 GMT
+	Date: Mon, 06 Dec 2021 01:15:14 GMT
 	Via: 1.1 varnish
 	Connection: close
-	
-	
-	<html>
-	<head>
-	<title>Fastly error: unknown domain </title>
-	</head>
-	<body>
-	<p>Fastly error: unknown domain: . Please check that this domain has been added to a service.</p>
-	<p>Details: cache-hhn4073-HHN</p></body></html>Connection closed by foreign host.
+	X-Served-By: cache-hhn4050-HHN
+	X-Cache: MISS
+	X-Cache-Hits: 0
+	X-Timer: S1638753315.538234,VS0,VE170
+	Vary: Fastly-SSL
+	X-DNS-Prefetch-Control: off
+	Set-Cookie: prov=7c437fa7-13b1-4a79-73c8-dd15b8d5a125; domain=.stackoverflow.com; expires=Fri, 01-Jan-2055 00:00:00 GMT; path=/; HttpOnly
+
+	Connection closed by foreign host.
 
 
-Код ошибки 500.
 
-Описание из [wiki](https://ru.wikipedia.org/wiki/%D0%A1%D0%BF%D0%B8%D1%81%D0%BE%D0%BA_%D0%BA%D0%BE%D0%B4%D0%BE%D0%B2_%D1%81%D0%BE%D1%81%D1%82%D0%BE%D1%8F%D0%BD%D0%B8%D1%8F_HTTP):
+HTTP код 301.
+
+Описание из [https://ru.wikipedia.org/wiki/HTTP_301):
  
-	500 — любая внутренняя ошибка сервера, которая не входит в рамки остальных ошибок класса. Появился в HTTP/1.0.
+301 — Код состояния HTTP 301 или Moved Permanently (с англ. — «Перемещено навсегда») — стандартный код ответа HTTP, получаемый в ответ от сервера в ситуации, когда запрошенный ресурс был на постоянной основе перемещён в новое месторасположение, и указывающий на то, что текущие ссылки, использующие данный URL, должны быть обновлены. Адрес нового месторасположения ресурса указывается в поле Location получаемого в ответ заголовка пакета протокола HTTP.
 
 
 ## 2. Повторите задание 1 в браузере, используя консоль разработчика F12.
