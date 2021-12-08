@@ -294,6 +294,5 @@
 ![Alt](5.png "Screenshot")
 
 
-[network](./Untitled Diagram.drawio)
-
+![network](./Untitled Diagram.drawio)
 
