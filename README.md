@@ -294,10 +294,7 @@
 ![Alt](5.png "Screenshot")
 
 
-![network](./Untitled Diagram.drawio)
+<a id="raw-url" href="https://raw.githubusercontent.com/anber137/bash_1/master/Untitled Diagram.drawio">Файл в формате drawio</a>
 
-<a id="raw-url" href="https://raw.githubusercontent.com/anber137/bash_1/master/Untitled Diagram.drawio">File drawio</a>
-
-<a id="raw-url" href="https://github.com/anber137/bash_1/Untitled Diagram.drawio">File drawio</a>
 
 
