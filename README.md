@@ -169,12 +169,16 @@
 
 ### Решение:	
 
+Переименовал id_rsa:
+
+	mv ~/.ssh/id_rsa ~/.ssh/deb26.sec
+
 Создал файл кнфигураци ~/.ssh/config
 
 	anber@zh:~/.ssh$ cat config 
 	Host deb26
 	 HostName 10.8.0.26
-	 IdentityFile ~/.ssh/id_rsa
+	 IdentityFile ~/.ssh/deb26.sec
 
 Проверл подключение по имени:
 
