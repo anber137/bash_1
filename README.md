@@ -8,7 +8,8 @@
 
 Проедположим команда разаботчиков создала программный продукт, который умеет выполнять операцию  2 + 2. 
 Команда тестировщиков вяснила, что в некоторых слуаях результат работы программного продукта отличается от 
-предпологаемого. Но deadline уже прошел и клиент требует результат.
+предпологаемого. 
+Но deadline уже прошел и клиент требует результат.
 Команда маркетологов смогла исправить ситуацию и преподнисла данный баг как фичу, а именно: 
 
 	"Молодая но очень перспективная команда разработчиков смогла избавиться от такого аттавизма как идемпотентность,
@@ -49,13 +50,15 @@ VirtualBox и Vagrant были установлены ранне в рамках
    apt install virtualbox-ext-pack
 ```
 
-   root@debian:/home/anber# apt-get install virtualbox virtualbox-ext-pack vagrant
-   Reading package lists... Done
-   Building dependency tree... Done
-   Reading state information... Done
-   virtualbox is already the newest version (6.1.28-dfsg-1~fto11+1).
-   virtualbox-ext-pack is already the newest version (6.1.28-1~fto11+1).
-   vagrant is already the newest version (2.2.19).
+```
+root@debian:/home/anber# apt-get install virtualbox virtualbox-ext-pack vagrant
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+virtualbox is already the newest version (6.1.28-dfsg-1~fto11+1).
+virtualbox-ext-pack is already the newest version (6.1.28-1~fto11+1).
+vagrant is already the newest version (2.2.19).
+```
 
 Устанавливаю и проверяю версию ansible
 
@@ -64,14 +67,17 @@ VirtualBox и Vagrant были установлены ранне в рамках
    root@debian:/home/anber# ansible --version
 ```
 
+```
    ansible 2.10.8
      config file = None
      configured module search path = ['/root/.ansible/plugins/modules', '/usr/share/ansible/plugins/modules']
      ansible python module location = /usr/lib/python3/dist-packages/ansible
      executable location = /usr/bin/ansible
      python version = 3.9.2 (default, Feb 28 2021, 17:03:44) [GCC 10.2.1 20210110]
+```
 
 Проверить версию VirtualBox можно через dpkg -l либо virtualbox --help. 
+
 Версию vagrant можно проверить:
 
 
@@ -87,7 +93,8 @@ VirtualBox и Vagrant были установлены ранне в рамках
 #### Решение
 
 В Vagrantfile поправил  NET = "192.168.192." на 192.168.56.
-Ошибка при копировании ключа свазана с отсутствие ключа. 
+
+Ошибка при копировании ключа свазана с отсутствие ключа.
 
 	anber@debian:/home/var5/vagrant$ vagrant up
 	Bringing machine 'server1.netology' up with 'virtualbox' provider...
