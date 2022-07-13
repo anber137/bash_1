@@ -1,0 +1,14 @@
+// Configure the Yandex.Cloud provider
+provider "yandex" {
+  service_account_key_file = "/home/devops/R73/key"
+  cloud_id                 = ""
+  folder_id                = ""
+  zone                     = "ru-central1-a"
+}
+
+// Create a new instance
+resource "yandex_compute_instance" "default" {
+  ...
+}
+
+
