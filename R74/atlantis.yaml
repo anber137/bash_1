@@ -1,0 +1,17 @@
+version: 3
+
+automerge: true
+parallel_plan: true
+parallel_apply: true
+
+projects:
+- dir: R74
+  workspace: stage
+  autoplan:
+    when_modified: ["*.tf", "../modules/**/*.tf"]
+    enabled: true
+- dir: R74
+  workspace: prod
+  autoplan:
+    when_modified: ["*.tf", "../modules/**/*.tf"]
+    enabled: true

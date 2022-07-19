@@ -1,0 +1,25 @@
+repos:
+  # 1 
+  - id: https://github.com/anber137/R74/*
+  workflow: custom
+  # apply_requirements sets the Apply Requirements for all repos that match.
+  apply_requirements: [approved, mergeable]
+ 
+  # 2 
+  allowed_overrides: [workflow]
+  allowed_workflows: [custom]
+  allow_custom_workflows: true
+
+workflows:
+  custom:
+    plan:
+      steps:
+      - run: any-command arg1 arg2
+      - init
+      - plan:
+          extra_args: ["-lock", "false"]
+      - run: any-command arg1 arg2
+    apply:
+      steps:
+      - run: echo hi
+      - apply
